@@ -1,74 +1,14 @@
 <html>
-<body style="background-color:black;">
-<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
-<style>
-	ul#console {
-		list-style-type: none;
-		font-family: 'Roboto Mono', monospace;
-		font-size: 14px;
-		line-height: 25px;
-		padding-left: 5px;
-		padding-right: 5px;
-		width: 99%;
-		background-color:black;
-	}
-    ul#console li {
-        border-bottom: solid 1px #80808038;
-        text-align: right;
-        color: white;
-        word-wrap: break-word;
+<body>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+    <link rel="stylesheet" href="Style.css">
+    <ul id="console"></ul>
+    <input id="txtInput" type="console" value="" style="width: 80%">
+    <button id="myBtn" onclick="Dialog('Test',document.getElementsByTagName('input')[0].value,'test.png','left');" style="width: 3%">U</button>
+    <button id="myBtn" onclick="Dialog('Test2',document.getElementsByTagName('input')[0].value,'image.png','right');" style="width: 3%">U</button>
+    <button id="myBtn" onclick="Description(document.getElementsByTagName('input')[0].value,'left');" style="width: 3%">U</button>
 
-    }
-	input[type=console], console {
-		background-color: black;
-		font-family: 'Roboto Mono', monospace;
-		font-size: 14px;
-		height: 24px;
-		margin: 8px 0;
-		color: darkgray;
-		padding: 8px;
-		display: inline-block;
-		border: 1px solid #ccc;
-		border-radius: 4px;
-		box-sizing: border-box;
-	}
-</style>
-
-	<ul id="console"></ul>
-	<input id="txtInput" type = "console" value="" style="width: 80%"></input>
-	<button id="myBtn" onclick="TextOutput(document.getElementsByTagName('input')[0].value,'User');" style="width: 3%">U</button>
-	<button id="myBtn2" onclick="TextOutput(document.getElementsByTagName('input')[0].value,'Console');" style="width: 3%">C</button>
-	<button id="myBtn3" onclick="TextOutput(document.getElementsByTagName('input')[0].value,'Option');" style="width: 3%">O</button>
-	<script>
-		function TextOutput(txt, src) {
-			document.getElementsByTagName('input')[0].value = ""
-			var newLine = document.createElement("li");
-			if (src == "User") {
-				newLine.style.textAlign = "left"
-				newLine.style.color = "white"
-                newLine.style.paddingRight = "10%"
-			}
-			if (src == "Console") {
-				newLine.style.textAlign = "right"
-				newLine.style.color = "yellow"
-                newLine.style.paddingLeft = "10%"
-			}
-			if (src == "Option") {
-				newLine.style.textAlign = "center"
-				newLine.style.color = "red"
-				newLine.style.paddingLeft = "5%"
-                newLine.style.paddingRight = "5%"
-			}
-			newLine.innerHTML = (typeof txt === 'string') ? txt : JSON.stringify(txt, null, 4);
-			document.querySelector('#console').appendChild(newLine);
-		}
-		var input = document.getElementById("txtInput");
-		input.addEventListener("keyup", function (event) {
-			if (event.keyCode === 13) {
-				event.preventDefault();
-				document.getElementById("myBtn").click();
-			}
-		});
-	</script>
+    <script src="TextManagement.js">
+    </script>
 </body>
 </html>
