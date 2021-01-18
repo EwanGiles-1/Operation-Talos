@@ -65,6 +65,22 @@ body {
             margin-right: 80px;
             margin-left: 40%;
         }
+.option {
+
+}
+.option::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+    .option button {
+        color: #cdd9dd;
+        margin-left: 80px;
+        margin-right: 80px;
+        text-align: center;
+        align-self: center;
+        background-color: #060708;
+    }
 input[type=console], console {
     background-color: #060708;
     font-family: 'Roboto Mono', monospace;
