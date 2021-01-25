@@ -1,14 +1,19 @@
-<html>
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Text Adventure</title>
+</head>
 <body>
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
-    <link rel="stylesheet" href="Style.css">
     <ul id="console"></ul>
-    <input id="txtInput" type="console" value="" style="width: 80%">
-    <button id="myBtn" onclick="Option(document.getElementsByTagName('input')[0].value);" style="width: 3%">U</button>
-    <button id="myBtn" onclick="Dialog('Test2',document.getElementsByTagName('input')[0].value,'image.png','right');" style="width: 3%">U</button>
-    <button id="myBtn" onclick="Description(document.getElementsByTagName('input')[0].value,'left');" style="width: 3%">U</button>
-    <script src="Scripts/TextManagement.js"></script>
-    <script src="Scripts/Battle.js"></script>
+    <input id="txtInput" value="" style="width: 80%">
+    <button id="myBtn" onclick="Print(document.getElementsByTagName('input')[0].value);" style="width: 3%">U</button>
+    <button id="myBtn2" onclick="interpret(document.getElementsByTagName('input')[0].value);" style="width: 3%">U</button>
+    <script src="Scripts/Actions.js"></script>    
+    <script src="Scripts/Rooms.js"></script>
+    <script src="Scripts/Interpreter.js"></script>
     <script src="Scripts/Game.js"></script>
-</body>
-</html>
+</body >
+</html >
