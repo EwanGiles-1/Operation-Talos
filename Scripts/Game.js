@@ -1,110 +1,61 @@
 ﻿
-function Dialog(Name, text, image, side) {
-    document.getElementsByTagName('input')[0].value = "";
-    var liLine = document.createElement("li");
-    var Message = document.createElement("div")
-    Message.className = "dialog"
-    var imgToken = document.createElement("img");
-    imgToken.src = image;
-    var Title = document.createElement("span")
-    var txtMsg = document.createElement("p")
-    if (side == "left") {
-        imgToken.className = "dialog img"
-        txtMsg.className = "dialog p"
+
+const config = {
+    type: Phaser.AUTO,
+    parent: 'game',
+    width: 720,
+    height: 360,
+    pixelArt: true,
+    //scale: {mode: Phaser.Scale.ScaleModes.FIT},
+    zoom: 2,
+    scene: {
+        preload: preload,
+        create: create
     }
-    else {
-        imgToken.className = "dialog img right"
-        txtMsg.className = "dialog p right"
-    }
-    Title.style.fontSize = "25px"
-    Title.style.lineHeight = "1.2"
-    Title.style.color = "#dbe4e7"
-    Title.innerText = Name + "\n";
-    txtMsg.appendChild(Title)
-    txtMsg.appendChild(document.createTextNode(text));
-    Message.appendChild(imgToken)
-    Message.appendChild(txtMsg)
-    liLine.appendChild(Message)
-    document.querySelector('#console').appendChild(liLine)
+};
+
+var game = new Phaser.Game(config);
+const Dictionary = DictionaryInit()
+const LineX = 50
+const LineY = 42
+
+function preload() {
+    this.load.image('mapGrid', "../assets/tilesets/mapGrid.png")
+    this.load.image('wire', "../assets/tilesets/wire.png")
+    this.load.image('box', "../assets/tilesets/box.png")
+    this.load.image('button', "../assets/tilesets/button.png")
+    this.load.tilemapTiledJSON('tilemap', "assets/map/05.json")
+    this.load.bitmapFont('pixelmix', "../assets/font/pixelmix_0.png", "../assets/font/pixelmix.xml")
+    //var files = fs.readdirSync("../assets/map/")
+    //console.log(files)
+    var fs = 
+    console.log(fs)
 }
-/*Print Function rundown
- * Split text by a character into each "Dialog"
- * Split again into each Dialog's features (Time delay, Characteristics ect.)
- * First split determines what the dialog is (Speech, Description ect.)
- * If dialog is speech second split is Character ID which determines name, icon ect.
- * The final entry will be the text
- * 
- */
-function Print(input) {
-    var Character = [["image", "debug"], ["Carpenter", "Jack"], ["Gene", "Gene"], ["Jumbo", "Aaren"], ["Boss", "McKenzie"]]
-    var Array = input.split('¦')
-    var Dialog = []
-    for (i = 0; i < Array.length; ++i) {
-        var Split = Array[i].split('¬')
-        Dialog.push(Split)
-    }
-    /* Dialog Type Chart
-     * 0 = Speech
-     * 1 = Description
-     * 2 = Special (Unused)
-     */
-    for (i = 0; i < Dialog.length; ++i) {
-        var newLine = document.createElement("li")
-        var Divider = document.createElement("div")
-        var Text = document.createElement("p")
-        var Content = document.createElement("span")
-        if (Dialog[i][0] == 0) {
-            // Speech
-            // Type¬Name¬Orientation¬Text¬Delay
-            var Image = document.createElement("img");
-            Image.src = "Icons/" + Character[Dialog[i][1]][0] + ".png"
-            var Title = document.createElement("span")
-            Title.innerText = Character[Dialog[i][1]][0] + "\n";
-            Text.appendChild(Title)
-            Content.innerText = Dialog[i][3]
-            Text.appendChild(Content)
-            if (Dialog[i][3] == "left") {
-                //left
+function create() {
+    //    Keyboard CommandText Input
+    // CommandText = new BitmapText(create,200,20, "pixelmix")
+    var CommandText = this.add.bitmapText(400, 10, "pixelmix", "", 8);
+    var textRAW = [""]
+    this.input.keyboard.on('keydown', function (event) {
+        textRAW = USERtextInput(event,textRAW)
+        CommandText.text = Display(textRAW,LineX,LineY)
+    });
 
-            }
-            else if (Dialog[i][3] == "right") {
-                //right
-
-            }
-            else {
-                //center
-
-            }
-            Divider.appendChild(Image)
-            Divider.appendChild(Text)
-            newLine.appendChild(Divider)
-            document.querySelector('#console').appendChild(newLine)
-            
-        }
-        else if (Dialog[i][0] == 1) {
-            //Description
-            //Type¬Orientation¬Text¬Delay
-            Content.innerText = Dialog[i][2]
-            Text.appendChild(Content)
-            if (Dialog[i][2] == "left") {
-                //left
-
-            }
-            else if (Dialog[i][2] == "right") {
-                //right
-
-            }
-            else {
-                //center
-
-            }
-            Divider.appendChild(Text)
-            newLine.appendChild(Divider)
-            document.querySelector('#console').appendChild(newLine)
-        }
-        else {
-            //Special
-
-        }
-    }
+    //   Map Display
+    var r1 = this.add.rectangle(180,180,350,350)
+    r1.setStrokeStyle(10, 0x1a65ac);
+    // var r2 = this.add.rectangle(128,128,64,64,0x1a65ac)
+    // this.add.image(0,0, "mapGrid")
+    var map = this.make.tilemap({key:'tilemap'})
+    const tilesetBACK = map.addTilesetImage('mapGrid')
+    const tilesetWIRE = map.addTilesetImage('wire')
+    const tilesetBOX = map.addTilesetImage('box')
+    const tilesetBUTTON = map.addTilesetImage('button')
+    base = map.createLayer('base', tilesetBACK, 12, 12)
+    decoration = map.createLayer('decoration', tilesetWIRE , 12, 12)
+    box = map.createLayer('box', tilesetBOX , 12, 12)
+    button = map.createLayer('button', tilesetBUTTON , 12, 12)
+    //console.log(map)
+    //
+    InitialiseMap(map)
 }

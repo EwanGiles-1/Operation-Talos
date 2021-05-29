@@ -1,0 +1,59 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Project Talos</title>
+    <link rel="stylesheet" href="app.css">
+    <!--[if lt IE 9]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <style>
+        article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h2>Project Talos</h2>
+    <table>
+        <tr>
+            <td width='50%'>
+                <p>
+                    Having the latest version of your browser is always recommended.
+                    To play this game your browser must support HTML5 features.
+                    If you cannot view the game or it doesn't work, refer to this list of supported browsers:
+                </p>
+                <ul>
+                    <li>Google Chrome, latest version(it installs updates automatically)</li>
+                    <li>Firefox 34 or better</li>
+                    <li>Opera 26 or better</li>
+                    <li>Safari 5 or better(doesn't play HTML5 audio if there is no QuickTime installed on the client computer)</li>
+                    <li>Internet Explorer 9 or better</li>
+                </ul>
+            </td>
+            <td>
+                <div id="gameContainer"></div>
+            </td>
+        </tr>
+    </table>
+    <script type="text/javascript" src = "scripts/Dictionary.js"></script>
+    <script type="text/javascript" src = "scripts/InteractionEngine.js"></script>
+    <script type="text/javascript" src = "scripts/Interpreter.js"></script>
+    <script type="text/javascript" src = "scripts/TextManagement.js"></script>
+    <script type="text/javascript" src = "scripts/Entities.js"></script>
+    <script type="text/javascript" src = "scripts/Map.js"></script>
+    <script src="scripts/requirements/phaser.min.js"></script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+        families: ['Roboto Mono']
+        }
+    });
+    </script>
+
+    <script type = "text/javascript" src = "scripts/Game.js"></script>
+
+</body>
+</html>
